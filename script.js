@@ -23,14 +23,14 @@ const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const confirmPasswordInput = document.getElementById("confirmPassword");
 
-// const button
+
 
 const usernameError = document.getElementById("usernameError");
 const emailError = document.getElementById("emailError");
 const passwordError = document.getElementById("passwordError");
 const confirmPasswordError = document.getElementById("confirmPasswordError");
 
-console.log(localStorage);
+// console.log(JSON.parse(localStorage.getItem("user-local")));
 
 // For the purpose of local storage
 
@@ -51,17 +51,16 @@ if (savedUser) {
 
 // event.preventDefault();
 
-console.log(usernameInput.value.trim());
-console.log(emailInput.value.trim());
-console.log(passwordInput.value.trim());
-console.log(confirmPasswordInput.value.trim());
+// Initial Check
+// console.log(usernameInput.value.trim());
+// console.log(emailInput.value.trim());
+// console.log(passwordInput.value.trim());
+// console.log(confirmPasswordInput.value.trim());
 
 
 //1. Validaing the username
 
 usernameInput.addEventListener("input", validateUsername);
-
-
 
 function validateUsername() {
     // const username = usernameInput.value.trim();
@@ -166,6 +165,9 @@ function validateConfirmPassword() {
 form.addEventListener("submit", function (event) {
 
     event.preventDefault();
+
+    console.log("Submitted Username:" , usernameInput.value.trim());
+    console.log("Submitted Email:" , emailInput.value.trim());
 
     const usernameValid = validateUsername();
     const emailValid = validateEmail();
