@@ -2,11 +2,35 @@ Reflection Questions
 
 Include your answers to the following questions in your submission, within the README.md file:
 
-    How did event.preventDefault() help in handling form submission?
-    What is the difference between using HTML5 validation attributes and JavaScript-based validation? Why might you use both?
-    Explain how you used localStorage to persist and retrieve the username. What are the limitations of localStorage for storing sensitive data?
-    Describe a challenge you faced in implementing the real-time validation and how you solved it.
-    How did you ensure that custom error messages were user-friendly and displayed at the appropriate times?
+    1. How did event.preventDefault() help in handling form submission?
+           preventDefault() stops the browser's normal form submission
+
+    2. What is the difference between using HTML5 validation attributes and JavaScript-based validation? Why might you use both?
+        HTML5 gives quick, built-in browser checks, while JavaScript lets us write custom error messages and check complex rules like password matching; using both gives instant feedback with complete custom control.
+
+    3. Explain how you used localStorage to persist and retrieve the username.
+        To persist the username, we saved it as a JSON string on form submission using localStorage.setItem("user-local", JSON.stringify(userData)).
+
+        To retrieve it, we checked localStorage.getItem("user-local") when the page loaded and parsed it back into an object to pre-fill the input field. 
+    
+    4. What are the limitations of localStorage for storing sensitive data?
+        No paswords or the critical information should be stored in the local storage.
+
+    5. Describe a challenge you faced in implementing the real-time validation and how you solved it.
+        One challenge I faced with real-time validation was controlling when the error messages should appear. I used the input event so that the fields could be validated while the user was typing. This worked well for username, email, and password, but I had a problem with the password and confirm password fields.
+
+       Initially, I called the confirm password validation whenever the password was being typed. Since the confirm password field was still empty, the "Confirm Password is required!" message appeared even though the user had not interacted with that field yet. Later, when I used the :invalid CSS selector to show invalid fields in red, the password and confirm password boxes also appeared red as soon as the page loaded because they were required fields.
+
+       I solved these issues by separating the validation logic and controlling when validateConfirmPassword() is called. I also removed the automatic :invalid styling and used an .error CSS class that JavaScript adds only when validation actually takes place. This helped me understand that real-time validation is not just about checking the input; it is also about controlling the timing of the feedback so that error messages do not appear before the user has interacted with the field.
+
+    6. How did you ensure that custom error messages were user-friendly and displayed at the appropriate times?
+       I tried to make the custom error messages simple and clear so that the user could easily understand what needs to be corrected. I used separate error message elements next to each input field and updated their text using JavaScript based on the type of validation error.
+
+       For example, instead of showing a general message such as "Invalid input," I used messages like "Username is required," "Username must be at least 3 characters," and "Please enter a valid email address." For the password, I provided specific messages for the minimum length and password requirements.
+
+       I used the input event for real-time validation so that the user could receive feedback while entering information. I also had to adjust the timing for the confirm password validation. Initially, the confirm password error appeared before the user had interacted with that field because the validation was being triggered while typing the password. I changed the logic so that the confirm password field is only validated when appropriate.
+
+       I also avoided using the CSS :invalid selector for the error styling because it caused required fields to appear red immediately when the page loaded. Instead, I used a CSS .error class that JavaScript adds when an actual validation error occurs. This helped keep the form clean when the user first opens it while still providing immediate feedback after interaction.
 
 
 
