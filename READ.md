@@ -7,3 +7,8 @@ Include your answers to the following questions in your submission, within the R
     Explain how you used localStorage to persist and retrieve the username. What are the limitations of localStorage for storing sensitive data?
     Describe a challenge you faced in implementing the real-time validation and how you solved it.
     How did you ensure that custom error messages were user-friendly and displayed at the appropriate times?
+
+
+
+
+//HTML Validation using validity()
