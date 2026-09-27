@@ -10,7 +10,8 @@
 </head>
 <body>
   <div class="container">
-    <h1>Register</h1>
+    <h1>pah-SAZH</h1>
+    <h2>Create your account</h2>
 
     <form id="registrationForm" novalidate>
 
@@ -31,6 +32,7 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required minlength="8" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+">
         <small>Password must be at least 8 characters long, include an uppercase letter, a lowercase letter, and a number.</small>
+        <!-- <button type=""button" id ="togglePassword">Show</button> -->
         <span class="error-message" id="passwordError"></span>
       </div>
 
@@ -39,6 +41,17 @@
         <input type="password" id="confirmPassword" name="confirmPassword" required>
         <span class="error-message" id="confirmPasswordError"></span>
       </div>
+
+      <!-- <div class="terms-container">
+        <input type="checkbox" id ="terms" name="terms" required>
+
+        <label for="terms">
+            I agree to the Terms and Conditions
+        </label>
+
+        <span id="termsError" class="error-message"></span>
+
+      </div> -->
 
       <button type="submit">Register</button>
     </form>

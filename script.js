@@ -22,6 +22,7 @@ const usernameInput = document.getElementById("username");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const confirmPasswordInput = document.getElementById("confirmPassword");
+// const termsInput = document.getElementById("terms");
 
 
 
@@ -29,6 +30,7 @@ const usernameError = document.getElementById("usernameError");
 const emailError = document.getElementById("emailError");
 const passwordError = document.getElementById("passwordError");
 const confirmPasswordError = document.getElementById("confirmPasswordError");
+// const termsError = document.getElementById("termsError");
 
 // console.log(JSON.parse(localStorage.getItem("user-local")));
 
@@ -103,7 +105,7 @@ function validateEmail() {
     }
 
     else if (emailInput.validity.typeMismatch) {
-        emailError.textContent = "Please eneter a valid email address";
+        emailError.textContent = "Please enter a valid email address";
         return false;
     }
     else {
@@ -117,9 +119,17 @@ function validateEmail() {
 
 //3. Validating the Password
 
+// passwordInput.addEventListener("input", function () {
+//     validatePassword();
+//     validateConfirmPassword();
+// });
+
 passwordInput.addEventListener("input", function () {
     validatePassword();
-    validateConfirmPassword();
+
+    if (confirmPasswordInput.value !== "") {
+        validateConfirmPassword();
+    }
 });
 function validatePassword() {
     if (passwordInput.validity.valueMissing) {
@@ -143,6 +153,7 @@ function validatePassword() {
 //4. Validating the Confirm Password
 
 confirmPasswordInput.addEventListener("input", validateConfirmPassword);
+// confirmPasswordInput.addEventListener("blur", validateConfirmPassword);
 function validateConfirmPassword() {
     if (confirmPasswordInput.validity.valueMissing) {
         confirmPasswordError.textContent = "Confirm Password is required!"
@@ -156,6 +167,25 @@ function validateConfirmPassword() {
     return true;
 }
 
+//Validating Terms and conditions
+
+
+
+// termsInput.addEventListener("change", validateTerms);
+
+// function validateTerms() {
+
+//     if (termsInput.validity.valueMissing) {
+//         termsError.textContent = "You must agree to continue";
+//         return false;
+//     }
+//     else {
+//         termsError.textContent = "";
+//         return true;
+//     }
+// }
+
+
 
 
 
@@ -166,49 +196,64 @@ form.addEventListener("submit", function (event) {
 
     event.preventDefault();
 
-    console.log("Submitted Username:" , usernameInput.value.trim());
-    console.log("Submitted Email:" , emailInput.value.trim());
+    console.log("Submitted Username:", usernameInput.value.trim());
+    console.log("Submitted Email:", emailInput.value.trim());
 
     const usernameValid = validateUsername();
     const emailValid = validateEmail();
     const passwordValid = validatePassword();
     const confirmPasswordValid = validateConfirmPassword();
+    // const termsValid = validateTerms();
 
 
     if (usernameValid &&
         emailValid &&
         passwordValid &&
-        confirmPasswordValid)
-    {
+        confirmPasswordValid 
+        // && termsValid
+        ) {
         //Adding local storage
         const user = {
-            username:usernameInput.value.trim(),
+            username: usernameInput.value.trim(),
             email: emailInput.value.trim(),
         };
         localStorage.setItem("user-local", JSON.stringify(user));
-        alert("Registration is Successfull!");
+        alert("Registration is Successful!");
         form.reset();
     }
-    else
-    {
-        if(!usernameValid)
-        {
+    else {
+        if (!usernameValid) {
             usernameInput.focus();
         }
-        else if(!emailValid)
-        {
+        else if (!emailValid) {
             emailInput.focus();
         }
-        else if(!passwordValid)
-        {
+        else if (!passwordValid) {
             passwordInput.focus();
         }
-        else if(!confirmPasswordValid)
-        {
+        else if (!confirmPasswordValid) {
             confirmPasswordInput.focus();
         }
+        // else if (!termsValid) {
+        //     termsInput.focus();
+        // }
     }
 });
+
+// const togglePassword = document.getElementById("togglePassword");
+
+// togglePassword.addEventListener("click", function () {
+
+//     if (passwordInput.type === "password") {
+//         passwordInput.type = "text";
+//         togglePassword.textContent = "Hide";
+//     }
+//     else {
+//         passwordInput.type = "password";
+//         togglePassword.textContent = "Show";
+//     }
+
+// });
 
 
 
